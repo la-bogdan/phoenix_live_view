@@ -46,9 +46,15 @@ let DOM = {
     return template.content.childElementCount
   },
 
-  isUploadInput(el){ return el.type === "file" && el.getAttribute(PHX_UPLOAD_REF) !== null },
+  findForms(node) { return this.all(node, "form") },
 
-  findUploadInputs(node){ return this.all(node, `input[type="file"][${PHX_UPLOAD_REF}]`) },
+  // Returns all form controls contained within `node`.
+  // https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/elements
+  formControls(node) { return Array.from(node.elements || []) },
+
+  isUploadInput(el){ return el.type === "file" && el.hasAttribute(PHX_UPLOAD_REF) },
+
+  findUploadInputs(node){ return this.formControls(node).filter(this.isUploadInput) },
 
   findComponentNodeList(node, cid){
     return this.filterWithinSameLiveView(this.all(node, `[${PHX_COMPONENT}="${cid}"]`), node)

@@ -137,4 +137,75 @@ describe("DOM", () => {
       expect(errorCount).toBe(2)
     })
   })
+
+  describe("formControls", () => {
+    test("returns an empty Array when form is not an HTMLFormElement", () => {
+      let div = tag("div", {"id": "div"}, "")
+      document.body.appendChild(div)
+      expect(DOM.formControls(div)).toEqual([])
+    })
+
+    test("returns all control elements associated with a form", () => {
+      let formId = "form-controls-form"
+      let form = tag("form", {"id": formId}, "")
+      let inControls = [
+        tag("input", {"type": "text"}, ""),
+        tag("select", {}, ""),
+        tag("textarea", {}, ""),
+        tag("button", {}, "Submit"),
+        tag("input", {"type": "file"}, ""),
+      ]
+      inControls.forEach((ctrl) => form.appendChild(ctrl))
+      document.body.appendChild(form)
+
+      let outControls = [
+        tag("input", {"form": formId, "type": "text"}, ""),
+        tag("select", {"form": formId}, ""),
+        tag("textarea", {"form": formId}, ""),
+        tag("button", {"form": formId}, "Submit"),
+        tag("input", {"form": formId, "type": "file"}, ""),
+      ]
+      outControls.forEach((ctrl) => document.body.appendChild(ctrl))
+
+      let allControls = inControls.concat(outControls)
+      expect(DOM.formControls(form)).toEqual(allControls)
+    })
+  })
+
+  describe("findUploadInputs", () => {
+    test("returns all `live_file_input` elements associated with a form", () => {
+      let inputIn = tag("input", {"type": "text", "id": "text-In"}, "")
+      let selectIn = tag("select", {"id": "select-In"}, "")
+      let textareaIn = tag("textarea", {"id": "textarea-In"}, "")
+      let submitIn = tag("button", {"type": "submit-In"}, "Submit")
+      let fileIn = tag("input", {"type": "file", "id": "file-In"}, "")
+      let liveFileIn = tag("input", {"type": "file", "id": "live-file-In", "data-phx-upload-ref": 0}, "")
+
+      let formId = "find-upload-inputs-form"
+      let form = tag("form", {"id": formId}, "")
+      form.appendChild(inputIn)
+      form.appendChild(selectIn)
+      form.appendChild(textareaIn)
+      form.appendChild(submitIn)
+      form.appendChild(fileIn)
+      form.appendChild(liveFileIn)
+      document.body.appendChild(form)
+
+      let inputOut = tag("input", {"form": formId, "name": "inputOut", "type": "text", "id": "text-Out"}, "")
+      let selectOut = tag("select", {"form": formId, "id": "select-Out"}, "")
+      let textareaOut = tag("textarea", {"form": formId, "id": "textarea-Out"}, "")
+      let submitOut = tag("button", {"form": formId, "type": "submit-Out"}, "Submit")
+      let fileOut = tag("input", {"form": formId, "type": "file", "id": "file-Out"}, "")
+      let liveFileOut = tag("input", {"form": formId, "type": "file", "id": "live-file-Out", "data-phx-upload-ref": 1}, "")
+
+      document.body.appendChild(inputOut)
+      document.body.appendChild(selectOut)
+      document.body.appendChild(textareaOut)
+      document.body.appendChild(submitOut)
+      document.body.appendChild(fileOut)
+      document.body.appendChild(liveFileOut)
+
+      expect(DOM.findUploadInputs(form)).toEqual([liveFileIn, liveFileOut])
+    })
+  })
 })

@@ -35,7 +35,7 @@ defmodule PhoenixOld.LiveView.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.6.15"},
-      {:phoenix_html, "~> 3.0.0"},
+      {:phoenix_html, "~> 3.1"},
       {:jason, "~> 1.0", optional: true},
       {:ex_doc, "~> 0.20", only: :docs},
       {:floki, "~> 0.30.0", only: :test}

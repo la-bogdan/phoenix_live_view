@@ -5,7 +5,7 @@ defmodule PhoenixOld.LiveView.Socket do
   use Phoenix.Socket
 
   if Version.match?(System.version(), ">= 1.8.0") do
-    @derive {Inspect, only: [:id, :endpoint, :view, :parent_pid, :root_id, :assigns, :changed]}
+    @derive {Inspect, only: [:id, :endpoint, :view, :parent_pid, :root_pid, :assigns, :changed]}
   end
 
   defstruct id: nil,
@@ -29,7 +29,7 @@ defmodule PhoenixOld.LiveView.Socket do
   @doc """
   Connects the Phoenix.Socket for a LiveView client.
   """
-  @impl Phoenix.Socket
+  @impl PhoenixOld.Socket
   def connect(_params, %Phoenix.Socket{} = socket, _connect_info) do
     {:ok, socket}
   end

@@ -1,10 +1,10 @@
-defmodule Phoenix.LiveView.DiffTest do
+defmodule PhoenixOld.LiveView.DiffTest do
   use ExUnit.Case, async: true
 
-  import Phoenix.LiveView,
+  import PhoenixOld.LiveView,
     only: [sigil_L: 2, live_component: 2, live_component: 3, live_component: 4]
 
-  alias Phoenix.LiveView.{Socket, Diff, Rendered, Component}
+  alias PhoenixOld.LiveView.{Socket, Diff, Rendered, Component}
 
   def basic_template(assigns) do
     ~L"""
@@ -191,7 +191,7 @@ defmodule Phoenix.LiveView.DiffTest do
   end
 
   defmodule MyComponent do
-    use Phoenix.LiveComponent
+    use PhoenixOld.LiveComponent
 
     def mount(socket) do
       send(self(), {:mount, socket})
@@ -213,7 +213,7 @@ defmodule Phoenix.LiveView.DiffTest do
   end
 
   defmodule TempComponent do
-    use Phoenix.LiveComponent
+    use PhoenixOld.LiveComponent
 
     def mount(socket) do
       send(self(), {:temporary_mount, socket})
@@ -230,7 +230,7 @@ defmodule Phoenix.LiveView.DiffTest do
   end
 
   defmodule RenderOnlyComponent do
-    use Phoenix.LiveComponent
+    use PhoenixOld.LiveComponent
 
     def render(assigns) do
       ~L"""
@@ -240,7 +240,7 @@ defmodule Phoenix.LiveView.DiffTest do
   end
 
   defmodule BlockComponent do
-    use Phoenix.LiveComponent
+    use PhoenixOld.LiveComponent
 
     def mount(socket) do
       {:ok, assign(socket, :id, "DEFAULT")}
@@ -255,7 +255,7 @@ defmodule Phoenix.LiveView.DiffTest do
   end
 
   defmodule TreeComponent do
-    use Phoenix.LiveComponent
+    use PhoenixOld.LiveComponent
 
     def preload(list_of_assigns) do
       send(self(), {:preload, list_of_assigns})

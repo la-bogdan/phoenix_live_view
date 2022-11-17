@@ -1,10 +1,10 @@
-defmodule Phoenix.LiveView.LiveViewTest do
+defmodule PhoenixOld.LiveView.LiveViewTest do
   use ExUnit.Case, async: true
   use Phoenix.ConnTest
 
-  import Phoenix.LiveViewTest
-  alias Phoenix.LiveView
-  alias Phoenix.LiveViewTest.{Endpoint, DOM, ClockLive, ClockControlsLive}
+  import PhoenixOld.LiveViewTest
+  alias PhoenixOld.LiveView
+  alias PhoenixOld.LiveViewTest.{Endpoint, DOM, ClockLive, ClockControlsLive}
 
   @endpoint Endpoint
   @moduletag :capture_log
@@ -23,8 +23,8 @@ defmodule Phoenix.LiveView.LiveViewTest do
   defp simulate_outdated_token_on_page(conn) do
     html = html_response(conn, 200)
     [{_id, session_token, nil} | _] = DOM.find_views(html)
-    salt = Phoenix.LiveView.Utils.salt!(@endpoint)
-    outdated_token = Phoenix.Token.sign(@endpoint, salt, {0, %{}})
+    salt = PhoenixOld.LiveView.Utils.salt!(@endpoint)
+    outdated_token = PhoenixOld.Token.sign(@endpoint, salt, {0, %{}})
     %Plug.Conn{conn | resp_body: String.replace(html, session_token, outdated_token)}
   end
 
@@ -58,7 +58,7 @@ defmodule Phoenix.LiveView.LiveViewTest do
   describe "live_isolated" do
     test "renders a live view with custom session", %{conn: conn} do
       {:ok, view, _} =
-        live_isolated(conn, Phoenix.LiveViewTest.DashboardLive, session: %{"hello" => "world"})
+        live_isolated(conn, PhoenixOld.LiveViewTest.DashboardLive, session: %{"hello" => "world"})
 
       assert render(view) =~ "session: %{&quot;hello&quot; =&gt; &quot;world&quot;}"
     end
@@ -66,7 +66,7 @@ defmodule Phoenix.LiveView.LiveViewTest do
     test "raises if handle_params is implemented", %{conn: conn} do
       assert_raise ArgumentError,
                    ~r/it is not mounted nor accessed through the router live\/3 macro/,
-                   fn -> live_isolated(conn, Phoenix.LiveViewTest.ParamCounterLive) end
+                   fn -> live_isolated(conn, PhoenixOld.LiveViewTest.ParamCounterLive) end
     end
   end
 
@@ -554,7 +554,7 @@ defmodule Phoenix.LiveView.LiveViewTest do
 
     test "raises with invalid options", %{conn: conn} do
       assert_raise Plug.Conn.WrapperError,
-                   ~r/invalid option returned from Phoenix.LiveViewTest.OptsLive.mount\/2/,
+                   ~r/invalid option returned from PhoenixOld.LiveViewTest.OptsLive.mount\/2/,
                    fn ->
                      conn
                      |> put_session(:opts, temporary_assignswhoops: [:description])

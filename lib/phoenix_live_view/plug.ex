@@ -1,7 +1,7 @@
-defmodule Phoenix.LiveView.Plug do
+defmodule PhoenixOld.LiveView.Plug do
   @moduledoc false
 
-  alias Phoenix.LiveView.Controller
+  alias PhoenixOld.LiveView.Controller
   alias Plug.Conn
 
   @behaviour Plug
@@ -22,7 +22,7 @@ defmodule Phoenix.LiveView.Plug do
       |> Keyword.put(:session, session(conn, session_keys))
 
     if live_link?(conn) do
-      html = Phoenix.LiveView.Static.container_render(conn, view, render_opts)
+      html = PhoenixOld.LiveView.Static.container_render(conn, view, render_opts)
 
       conn
       |> put_cache_headers()

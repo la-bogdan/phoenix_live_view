@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveViewTest.DOM do
+defmodule PhoenixOld.LiveViewTest.DOM do
   @moduledoc false
 
   @phx_component "data-phx-component"

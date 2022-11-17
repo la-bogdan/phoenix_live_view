@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveView.Socket do
+defmodule PhoenixOld.LiveView.Socket do
   @moduledoc """
   The LiveView socket for Phoenix Endpoints.
   """
@@ -16,7 +16,7 @@ defmodule Phoenix.LiveView.Socket do
             assigns: %{},
             changed: %{},
             private: %{},
-            fingerprints: Phoenix.LiveView.Diff.new_fingerprints(),
+            fingerprints: PhoenixOld.LiveView.Diff.new_fingerprints(),
             redirected: nil,
             connected?: false
 
@@ -24,7 +24,7 @@ defmodule Phoenix.LiveView.Socket do
   @type unsigned_params :: map
   @type assigns :: map
 
-  channel "lv:*", Phoenix.LiveView.Channel
+  channel "lv:*", PhoenixOld.LiveView.Channel
 
   @doc """
   Connects the Phoenix.Socket for a LiveView client.

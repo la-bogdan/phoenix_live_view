@@ -1,11 +1,11 @@
-defmodule Phoenix.LiveView.ParamsTest do
+defmodule PhoenixOld.LiveView.ParamsTest do
   use ExUnit.Case, async: true
   use Phoenix.ConnTest
 
-  import Phoenix.LiveViewTest
+  import PhoenixOld.LiveViewTest
 
-  alias Phoenix.LiveView
-  alias Phoenix.LiveViewTest.Endpoint
+  alias PhoenixOld.LiveView
+  alias PhoenixOld.LiveViewTest.Endpoint
 
   @endpoint Endpoint
   @moduletag :capture_log

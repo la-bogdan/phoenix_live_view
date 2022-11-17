@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveView.Router do
+defmodule PhoenixOld.LiveView.Router do
   @moduledoc """
   Provides LiveView routing for Phoenix routers.
   """
@@ -20,11 +20,11 @@ defmodule Phoenix.LiveView.Router do
       user ID and the `remember_me` value into the LiveView session:
 
           [:user_id, :remember_me]
-      
+
       This also accepts key/value entries which are mapped directly into the
       LiveView session.  This is useful for identifying which `live` macro was
       matched.
-      
+
           [action: :index]
 
     * `:layout` - the optional tuple for specifying a layout to render the
@@ -60,10 +60,10 @@ defmodule Phoenix.LiveView.Router do
     quote bind_quoted: binding() do
       Phoenix.Router.get(
         path,
-        Phoenix.LiveView.Plug,
+        PhoenixOld.LiveView.Plug,
         Phoenix.Router.scoped_alias(__MODULE__, live_view),
         private: %{
-          phoenix_live_view: Phoenix.LiveView.Router.__live_options__(__MODULE__, opts)
+          phoenix_live_view: PhoenixOld.LiveView.Router.__live_options__(__MODULE__, opts)
         },
         as: opts[:as] || :live,
         alias: false

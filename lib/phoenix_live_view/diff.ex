@@ -1,10 +1,10 @@
-defmodule Phoenix.LiveView.Diff do
+defmodule PhoenixOld.LiveView.Diff do
   # The diff engine is responsible for tracking the rendering state.
   # Given that components are part of said state, they are also
   # handled here.
   @moduledoc false
 
-  alias Phoenix.LiveView.{Utils, Rendered, Comprehension, Component}
+  alias PhoenixOld.LiveView.{Utils, Rendered, Comprehension, Component}
 
   @components :c
   @static :s

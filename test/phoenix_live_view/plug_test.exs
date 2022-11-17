@@ -1,9 +1,9 @@
-defmodule Phoenix.LiveView.PlugTest do
+defmodule PhoenixOld.LiveView.PlugTest do
   use ExUnit.Case, async: true
   use Phoenix.ConnTest
 
-  alias Phoenix.LiveView.Plug, as: LiveViewPlug
-  alias Phoenix.LiveViewTest.{ThermostatLive, DashboardLive, Endpoint}
+  alias PhoenixOld.LiveView.Plug, as: LiveViewPlug
+  alias PhoenixOld.LiveViewTest.{ThermostatLive, DashboardLive, Endpoint}
 
   setup config do
     conn =

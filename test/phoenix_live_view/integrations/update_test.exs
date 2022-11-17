@@ -1,9 +1,9 @@
-defmodule Phoenix.LiveView.UpdateTest do
+defmodule PhoenixOld.LiveView.UpdateTest do
   use ExUnit.Case, async: true
   use Phoenix.ConnTest
 
-  import Phoenix.LiveViewTest
-  alias Phoenix.LiveViewTest.{Endpoint, DOM}
+  import PhoenixOld.LiveViewTest
+  alias PhoenixOld.LiveViewTest.{Endpoint, DOM}
 
   @endpoint Endpoint
   @moduletag :capture_log

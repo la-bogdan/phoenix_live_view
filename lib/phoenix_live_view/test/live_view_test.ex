@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveViewTest do
+defmodule PhoenixOld.LiveViewTest do
   @moduledoc """
   Conveniences for testing Phoenix live views.
 
@@ -142,8 +142,8 @@ defmodule Phoenix.LiveViewTest do
 
   require Phoenix.ConnTest
 
-  alias Phoenix.LiveView.{Diff, Socket}
-  alias Phoenix.LiveViewTest.{View, ClientProxy, DOM}
+  alias PhoenixOld.LiveView.{Diff, Socket}
+  alias PhoenixOld.LiveViewTest.{View, ClientProxy, DOM}
 
   @doc """
   Spawns a connected LiveView process.
@@ -225,7 +225,7 @@ defmodule Phoenix.LiveViewTest do
     {mount_opts, lv_opts} = Keyword.split(opts, [:connect_params])
 
     put_in(conn.private[:phoenix_endpoint], endpoint || raise("no @endpoint set in test case"))
-    |> Phoenix.LiveView.Controller.live_render(live_view, lv_opts)
+    |> PhoenixOld.LiveView.Controller.live_render(live_view, lv_opts)
     |> __live__(conn.request_path, mount_opts, :noop)
   end
 

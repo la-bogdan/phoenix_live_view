@@ -1,7 +1,7 @@
-defmodule Phoenix.LiveView.EngineTest do
+defmodule PhoenixOld.LiveView.EngineTest do
   use ExUnit.Case, async: true
 
-  alias Phoenix.LiveView.{Engine, Rendered, Diff, Socket}
+  alias PhoenixOld.LiveView.{Engine, Rendered, Diff, Socket}
 
   def safe(do: {:safe, _} = safe), do: safe
   def unsafe(do: {:safe, content}), do: content
@@ -17,7 +17,7 @@ defmodule Phoenix.LiveView.EngineTest do
 
     test "escapes HTML from nested content" do
       template = """
-      <%= Phoenix.LiveView.EngineTest.unsafe do %>
+      <%= PhoenixOld.LiveView.EngineTest.unsafe do %>
         <foo>
       <% end %>
       """
@@ -31,7 +31,7 @@ defmodule Phoenix.LiveView.EngineTest do
 
     test "nested content is always safe" do
       template = """
-      <%= Phoenix.LiveView.EngineTest.safe do %>
+      <%= PhoenixOld.LiveView.EngineTest.safe do %>
         <foo>
       <% end %>
       """
@@ -39,7 +39,7 @@ defmodule Phoenix.LiveView.EngineTest do
       assert render(template) == "\n  <foo>\n\n"
 
       template = """
-      <%= Phoenix.LiveView.EngineTest.safe do %>
+      <%= PhoenixOld.LiveView.EngineTest.safe do %>
         <%= "<foo>" %>
       <% end %>
       """
@@ -143,7 +143,7 @@ defmodule Phoenix.LiveView.EngineTest do
       assert static == ["before\n", "\nafter\n"]
 
       assert [
-               %Phoenix.LiveView.Comprehension{
+               %PhoenixOld.LiveView.Comprehension{
                  static: ["\n  x: ", "\n  y: ", "\n"],
                  dynamics: [
                    ["1", "2"],

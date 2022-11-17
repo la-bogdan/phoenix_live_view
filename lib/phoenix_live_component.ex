@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveComponent do
+defmodule PhoenixOld.LiveComponent do
   @moduledoc ~S"""
   Components are a mechanism to compartmentalize state, markup, and
   events in LiveView.
@@ -333,7 +333,7 @@ defmodule Phoenix.LiveComponent do
   """
   defmacro __using__(_) do
     quote do
-      import Phoenix.LiveView
+      import PhoenixOld.LiveView
 
       @doc false
       def __live__, do: %{kind: :component, module: __MODULE__}
@@ -348,11 +348,11 @@ defmodule Phoenix.LiveComponent do
   @callback update(Socket.assigns(), socket :: Socket.t()) ::
               {:ok, Socket.t()}
 
-  @callback render(assigns :: Socket.assigns()) :: Phoenix.LiveView.Rendered.t()
+  @callback render(assigns :: Socket.assigns()) :: PhoenixOld.LiveView.Rendered.t()
 
   @callback handle_event(
               event :: binary,
-              Phoenix.LiveView.unsigned_params(),
+              PhoenixOld.LiveView.unsigned_params(),
               socket :: Socket.t()
             ) ::
               {:noreply, Socket.t()}

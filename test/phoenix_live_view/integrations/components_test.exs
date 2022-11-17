@@ -1,9 +1,9 @@
-defmodule Phoenix.LiveView.ComponentTest do
+defmodule PhoenixOld.LiveView.ComponentTest do
   use ExUnit.Case, async: true
-  use Phoenix.ConnTest
+  use PhoenixOld.ConnTest
 
-  import Phoenix.LiveViewTest
-  alias Phoenix.LiveViewTest.{Endpoint, DOM, StatefulComponent}
+  import PhoenixOld.LiveViewTest
+  alias PhoenixOld.LiveViewTest.{Endpoint, DOM, StatefulComponent}
 
   @endpoint Endpoint
   @moduletag :capture_log
@@ -116,7 +116,7 @@ defmodule Phoenix.LiveView.ComponentTest do
   end
 
   defmodule MyComponent do
-    use Phoenix.LiveComponent
+    use PhoenixOld.LiveComponent
 
     def mount(socket) do
       send(self(), {:mount, socket})
@@ -143,7 +143,7 @@ defmodule Phoenix.LiveView.ComponentTest do
   end
 
   defmodule RenderOnlyComponent do
-    use Phoenix.LiveComponent
+    use PhoenixOld.LiveComponent
 
     def render(assigns) do
       ~L"""

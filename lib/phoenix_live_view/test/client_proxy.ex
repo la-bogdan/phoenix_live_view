@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveViewTest.ClientProxy do
+defmodule PhoenixOld.LiveViewTest.ClientProxy do
   @moduledoc false
   use GenServer
 
@@ -17,7 +17,7 @@ defmodule Phoenix.LiveViewTest.ClientProxy do
             id: nil,
             connect_params: %{}
 
-  alias Phoenix.LiveViewTest.{ClientProxy, DOM}
+  alias PhoenixOld.LiveViewTest.{ClientProxy, DOM}
 
   @doc """
   Encoding used by the Channel serializer.
@@ -30,7 +30,7 @@ defmodule Phoenix.LiveViewTest.ClientProxy do
   ## Options
 
     * `:caller` - the required `{ref, pid}` pair identifying the caller.
-    * `:view` - the required `%Phoenix.LiveViewTest.View{}`
+    * `:view` - the required `%PhoenixOld.LiveViewTest.View{}`
     * `:html` - the required string of HTML for the document.
     * `:timeout` - the required timeout for successful mount
   """
@@ -123,8 +123,8 @@ defmodule Phoenix.LiveViewTest.ClientProxy do
       "caller" => state.caller
     }
 
-    spec = {Phoenix.LiveView.Channel, {params, {self(), ref}, socket}}
-    DynamicSupervisor.start_child(Phoenix.LiveView.DynamicSupervisor, spec)
+    spec = {PhoenixOld.LiveView.Channel, {params, {self(), ref}, socket}}
+    DynamicSupervisor.start_child(PhoenixOld.LiveView.DynamicSupervisor, spec)
   end
 
   def handle_info({:sync_children, topic, from}, state) do
@@ -244,7 +244,7 @@ defmodule Phoenix.LiveViewTest.ClientProxy do
   def handle_call({:children, topic}, from, state) do
     case fetch_view_by_topic(state, topic) do
       {:ok, view} ->
-        :ok = Phoenix.LiveView.Channel.ping(view.pid)
+        :ok = PhoenixOld.LiveView.Channel.ping(view.pid)
         send(self(), {:sync_children, view.topic, from})
         {:noreply, state}
 
@@ -255,7 +255,7 @@ defmodule Phoenix.LiveViewTest.ClientProxy do
 
   def handle_call({:render_tree, topic, path}, from, state) do
     {:ok, view} = fetch_view_by_topic(state, topic)
-    :ok = Phoenix.LiveView.Channel.ping(view.pid)
+    :ok = PhoenixOld.LiveView.Channel.ping(view.pid)
     send(self(), {:sync_render, topic, path, from})
     {:noreply, state}
   end
@@ -329,7 +329,7 @@ defmodule Phoenix.LiveViewTest.ClientProxy do
   end
 
   defp verify_session(%ClientProxy{} = view) do
-    Phoenix.LiveView.Static.verify_session(view.endpoint, view.session_token, view.static_token)
+    PhoenixOld.LiveView.Static.verify_session(view.endpoint, view.session_token, view.static_token)
   end
 
   defp put_view(state, %ClientProxy{} = view, pid, rendered) do
@@ -542,7 +542,7 @@ defmodule Phoenix.LiveViewTest.ClientProxy do
   def build(attrs) do
     attrs_with_defaults =
       attrs
-      |> Keyword.merge(topic: Phoenix.LiveView.Utils.random_id())
+      |> Keyword.merge(topic: PhoenixOld.LiveView.Utils.random_id())
       |> Keyword.put_new_lazy(:ref, fn -> make_ref() end)
 
     struct(__MODULE__, attrs_with_defaults)

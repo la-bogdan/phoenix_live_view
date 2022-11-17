@@ -1,11 +1,11 @@
-defmodule Phoenix.LiveView.MixProject do
+defmodule PhoenixOld.LiveView.MixProject do
   use Mix.Project
 
   @version "0.4.1"
 
   def project do
     [
-      app: :phoenix_live_view,
+      app: :phoenix_old_live_view,
       version: @version,
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
@@ -27,7 +27,7 @@ defmodule Phoenix.LiveView.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      mod: {Phoenix.LiveView.Application, []},
+      mod: {PhoenixOld.LiveView.Application, []},
       extra_applications: [:logger]
     ]
   end
@@ -44,7 +44,7 @@ defmodule Phoenix.LiveView.MixProject do
 
   defp docs do
     [
-      main: "Phoenix.LiveView",
+      main: "PhoenixOld.LiveView",
       source_ref: "v#{@version}",
       source_url: "https://github.com/phoenixframework/phoenix_live_view",
       extra_section: "GUIDES",
@@ -69,10 +69,10 @@ defmodule Phoenix.LiveView.MixProject do
   defp groups_for_modules do
     [
       "Live EEx Engine": [
-        Phoenix.LiveView.Engine,
-        Phoenix.LiveView.Component,
-        Phoenix.LiveView.Rendered,
-        Phoenix.LiveView.Comprehension
+        PhoenixOld.LiveView.Engine,
+        PhoenixOld.LiveView.Component,
+        PhoenixOld.LiveView.Rendered,
+        PhoenixOld.LiveView.Comprehension
       ]
     ]
   end

@@ -1,8 +1,8 @@
-defmodule Phoenix.LiveView.ControllerTest do
+defmodule PhoenixOld.LiveView.ControllerTest do
   use ExUnit.Case, async: true
   use Phoenix.ConnTest
 
-  alias Phoenix.LiveViewTest.Endpoint
+  alias PhoenixOld.LiveViewTest.Endpoint
 
   @endpoint Endpoint
 

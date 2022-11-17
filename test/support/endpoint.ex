@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveViewTest.Endpoint do
+defmodule PhoenixOld.LiveViewTest.Endpoint do
   def url(), do: "http://localhost:4000"
   def instrument(_, _, _, func), do: func.()
   def config(:live_view), do: [signing_salt: "112345678212345678312345678412"]
@@ -16,6 +16,6 @@ defmodule Phoenix.LiveViewTest.Endpoint do
     conn
     |> Plug.Parsers.call(@parsers)
     |> Plug.Conn.put_private(:phoenix_endpoint, __MODULE__)
-    |> Phoenix.LiveViewTest.Router.call([])
+    |> PhoenixOld.LiveViewTest.Router.call([])
   end
 end

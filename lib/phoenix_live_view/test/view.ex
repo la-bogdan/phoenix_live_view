@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveViewTest.View do
+defmodule PhoenixOld.LiveViewTest.View do
   @moduledoc """
   The struct for testing LiveViews.
 

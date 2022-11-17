@@ -1,7 +1,7 @@
-defmodule Phoenix.LiveViewTest.DOMTest do
+defmodule PhoenixOld.LiveViewTest.DOMTest do
   use ExUnit.Case, async: true
 
-  alias Phoenix.LiveViewTest.DOM
+  alias PhoenixOld.LiveViewTest.DOM
 
   # >= 4432 characters
   @too_big_session Enum.map(1..4432, fn _ -> "t" end) |> Enum.join()

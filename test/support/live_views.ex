@@ -1,7 +1,7 @@
-alias Phoenix.LiveViewTest.{ClockLive, ClockControlsLive}
+alias PhoenixOld.LiveViewTest.{ClockLive, ClockControlsLive}
 
-defmodule Phoenix.LiveViewTest.ThermostatLive do
-  use Phoenix.LiveView, container: {:article, class: "thermo"}, namespace: Phoenix.LiveViewTest
+defmodule PhoenixOld.LiveViewTest.ThermostatLive do
+  use PhoenixOld.LiveView, container: {:article, class: "thermo"}, namespace: PhoenixOld.LiveViewTest
 
   def render(assigns) do
     ~L"""
@@ -78,8 +78,8 @@ defmodule Phoenix.LiveViewTest.ThermostatLive do
   end
 end
 
-defmodule Phoenix.LiveViewTest.ClockLive do
-  use Phoenix.LiveView, container: {:section, class: "clock"}
+defmodule PhoenixOld.LiveViewTest.ClockLive do
+  use PhoenixOld.LiveView, container: {:section, class: "clock"}
 
   def render(assigns) do
     ~L"""
@@ -105,8 +105,8 @@ defmodule Phoenix.LiveViewTest.ClockLive do
   end
 end
 
-defmodule Phoenix.LiveViewTest.ClockControlsLive do
-  use Phoenix.LiveView
+defmodule PhoenixOld.LiveViewTest.ClockControlsLive do
+  use PhoenixOld.LiveView
 
   def render(assigns), do: ~L|<button phx-click="snooze">+</button>|
 
@@ -118,8 +118,8 @@ defmodule Phoenix.LiveViewTest.ClockControlsLive do
   end
 end
 
-defmodule Phoenix.LiveViewTest.DashboardLive do
-  use Phoenix.LiveView
+defmodule PhoenixOld.LiveViewTest.DashboardLive do
+  use PhoenixOld.LiveView
 
   def render(assigns) do
     ~L"""
@@ -132,8 +132,8 @@ defmodule Phoenix.LiveViewTest.DashboardLive do
   end
 end
 
-defmodule Phoenix.LiveViewTest.SameChildLive do
-  use Phoenix.LiveView
+defmodule PhoenixOld.LiveViewTest.SameChildLive do
+  use PhoenixOld.LiveView
 
   def render(%{dup: true} = assigns) do
     ~L"""
@@ -160,9 +160,9 @@ defmodule Phoenix.LiveViewTest.SameChildLive do
   end
 end
 
-defmodule Phoenix.LiveViewTest.RootLive do
-  use Phoenix.LiveView
-  alias Phoenix.LiveViewTest.ChildLive
+defmodule PhoenixOld.LiveViewTest.RootLive do
+  use PhoenixOld.LiveView
+  alias PhoenixOld.LiveViewTest.ChildLive
 
   def render(assigns) do
     ~L"""
@@ -188,8 +188,8 @@ defmodule Phoenix.LiveViewTest.RootLive do
   end
 end
 
-defmodule Phoenix.LiveViewTest.ChildLive do
-  use Phoenix.LiveView
+defmodule PhoenixOld.LiveViewTest.ChildLive do
+  use PhoenixOld.LiveView
 
   def render(assigns) do
     ~L"""
@@ -207,8 +207,8 @@ defmodule Phoenix.LiveViewTest.ChildLive do
   end
 end
 
-defmodule Phoenix.LiveViewTest.ParamCounterLive do
-  use Phoenix.LiveView
+defmodule PhoenixOld.LiveViewTest.ParamCounterLive do
+  use PhoenixOld.LiveView
 
   def render(assigns) do
     ~L"""
@@ -260,8 +260,8 @@ defmodule Phoenix.LiveViewTest.ParamCounterLive do
   end
 end
 
-defmodule Phoenix.LiveViewTest.OptsLive do
-  use Phoenix.LiveView
+defmodule PhoenixOld.LiveViewTest.OptsLive do
+  use PhoenixOld.LiveView
 
   def render(assigns), do: ~L|<%= @description %>. <%= @canary %>|
 
@@ -274,15 +274,15 @@ defmodule Phoenix.LiveViewTest.OptsLive do
   end
 end
 
-defmodule Phoenix.LiveViewTest.AppendLive do
-  use Phoenix.LiveView
+defmodule PhoenixOld.LiveViewTest.AppendLive do
+  use PhoenixOld.LiveView
 
   def render(assigns) do
     ~L"""
     <div id="times" phx-update="<%= @update_type %>">
       <%= for %{id: id, name: name} <- @time_zones do %>
         <h1 id="title-<%= id %>"><%= name %></h1>
-        <%= live_render(@socket, Phoenix.LiveViewTest.ClockLive, id: "tz-#{id}", session: %{name: name}) %>
+        <%= live_render(@socket, PhoenixOld.LiveViewTest.ClockLive, id: "tz-#{id}", session: %{name: name}) %>
       <% end %>
     </div>
     """
@@ -298,14 +298,14 @@ defmodule Phoenix.LiveViewTest.AppendLive do
   end
 end
 
-defmodule Phoenix.LiveViewTest.ShuffleLive do
-  use Phoenix.LiveView
+defmodule PhoenixOld.LiveViewTest.ShuffleLive do
+  use PhoenixOld.LiveView
 
   def render(assigns) do
     ~L"""
     <%= for zone <- @time_zones do %>
       <div id="score-<%= zone.id %>">
-        <%= live_render(@socket, Phoenix.LiveViewTest.ClockLive, id: "tz-#{zone.id}", session: %{name: zone.name}) %>
+        <%= live_render(@socket, PhoenixOld.LiveViewTest.ClockLive, id: "tz-#{zone.id}", session: %{name: zone.name}) %>
       </div>
     <% end %>
     """
@@ -320,8 +320,8 @@ defmodule Phoenix.LiveViewTest.ShuffleLive do
   end
 end
 
-defmodule Phoenix.LiveViewTest.BasicComponent do
-  use Phoenix.LiveComponent
+defmodule PhoenixOld.LiveViewTest.BasicComponent do
+  use PhoenixOld.LiveComponent
 
   def mount(socket) do
     {:ok, assign(socket, id: nil, name: "unknown")}
@@ -336,8 +336,8 @@ defmodule Phoenix.LiveViewTest.BasicComponent do
   end
 end
 
-defmodule Phoenix.LiveViewTest.StatefulComponent do
-  use Phoenix.LiveComponent
+defmodule PhoenixOld.LiveViewTest.StatefulComponent do
+  use PhoenixOld.LiveComponent
 
   def mount(socket) do
     {:ok, assign(socket, name: "unknown", dup_name: nil)}
@@ -384,14 +384,14 @@ defmodule Phoenix.LiveViewTest.StatefulComponent do
   end
 end
 
-defmodule Phoenix.LiveViewTest.WithComponentLive do
-  use Phoenix.LiveView
+defmodule PhoenixOld.LiveViewTest.WithComponentLive do
+  use PhoenixOld.LiveView
 
   def render(assigns) do
     ~L"""
-    <%= live_component @socket, Phoenix.LiveViewTest.BasicComponent %>
+    <%= live_component @socket, PhoenixOld.LiveViewTest.BasicComponent %>
     <%= for name <- @names do %>
-      <%= live_component @socket, Phoenix.LiveViewTest.StatefulComponent, id: name, name: name, from: @from %>
+      <%= live_component @socket, PhoenixOld.LiveViewTest.StatefulComponent, id: name, name: name, from: @from %>
     <% end %>
     """
   end

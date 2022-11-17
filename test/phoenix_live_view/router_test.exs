@@ -1,8 +1,8 @@
-defmodule Phoenix.LiveView.RouterTest do
+defmodule PhoenixOld.LiveView.RouterTest do
   use ExUnit.Case, async: true
   use Phoenix.ConnTest
 
-  alias Phoenix.LiveViewTest.Endpoint
+  alias PhoenixOld.LiveViewTest.Endpoint
 
   @endpoint Endpoint
   @moduletag :capture_log

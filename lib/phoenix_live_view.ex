@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveView do
+defmodule PhoenixOld.LiveView do
   @moduledoc """
   LiveView provides rich, real-time user experiences with
   server-rendered HTML.
@@ -936,13 +936,13 @@ defmodule Phoenix.LiveView do
   *Note*: when using `phx-hook`, a unique DOM ID must always be set.
   """
 
-  alias Phoenix.LiveView
-  alias Phoenix.LiveView.Socket
+  alias PhoenixOld.LiveView
+  alias PhoenixOld.LiveView.Socket
 
   @callback mount(session :: map, socket :: Socket.t()) ::
               {:ok, Socket.t()} | {:ok, Socket.t(), keyword()}
 
-  @callback render(assigns :: Socket.assigns()) :: Phoenix.LiveView.Rendered.t()
+  @callback render(assigns :: Socket.assigns()) :: PhoenixOld.LiveView.Rendered.t()
 
   @callback terminate(reason, socket :: Socket.t()) :: term
             when reason: :normal | :shutdown | {:shutdown, :left | :closed | term}
@@ -969,7 +969,7 @@ defmodule Phoenix.LiveView do
   @doc """
   Uses LiveView in the current module to mark it a LiveView.
 
-      use Phoenix.LiveView,
+      use PhoenixOld.LiveView,
         namespace: MyAppWeb,
         container: {:tr, class: "colorized"}
 
@@ -1093,7 +1093,7 @@ defmodule Phoenix.LiveView do
     assigns = rewrite_do(maybe_do(do_block) || maybe_do(assigns), assigns, __CALLER__)
 
     quote do
-      Phoenix.LiveView.__live_component__(
+      PhoenixOld.LiveView.__live_component__(
         unquote(socket),
         unquote(component).__live__,
         unquote(assigns)
@@ -1125,7 +1125,7 @@ defmodule Phoenix.LiveView do
 
   defp rewrite_do(do_block, caller) do
     unless Macro.Env.has_var?(caller, {:assigns, nil}) and
-             Macro.Env.has_var?(caller, {:changed, Phoenix.LiveView.Engine}) do
+             Macro.Env.has_var?(caller, {:changed, PhoenixOld.LiveView.Engine}) do
       raise ArgumentError,
             "cannot use live_compoment do/end blocks because we could not find existing assigns. " <>
               "Please pass a clause to do/end instead"
@@ -1135,8 +1135,8 @@ defmodule Phoenix.LiveView do
       fn extra_assigns ->
         var!(assigns) = Enum.into(extra_assigns, var!(assigns))
 
-        var!(changed, Phoenix.LiveView.Engine) =
-          if var = var!(changed, Phoenix.LiveView.Engine) do
+        var!(changed, PhoenixOld.LiveView.Engine) =
+          if var = var!(changed, PhoenixOld.LiveView.Engine) do
             for {key, _} <- extra_assigns, into: var, do: {key, true}
           end
 
@@ -1389,7 +1389,7 @@ defmodule Phoenix.LiveView do
 
   """
   defmacro sigil_L({:<<>>, _, [expr]}, []) do
-    EEx.compile_string(expr, engine: Phoenix.LiveView.Engine, line: __CALLER__.line + 1)
+    EEx.compile_string(expr, engine: PhoenixOld.LiveView.Engine, line: __CALLER__.line + 1)
   end
 
   @doc """
@@ -1493,7 +1493,7 @@ defmodule Phoenix.LiveView do
       assigns[:id] ||
         raise ArgumentError, "missing required :id in send_update. Got: #{inspect(assigns)}"
 
-    Phoenix.LiveView.Channel.send_update(module, id, assigns)
+    PhoenixOld.LiveView.Channel.send_update(module, id, assigns)
   end
 
   defp assert_root_live_view!(%{parent_pid: nil}, _context),

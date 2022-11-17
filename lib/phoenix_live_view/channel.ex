@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveView.Channel do
+defmodule PhoenixOld.LiveView.Channel do
   @moduledoc false
   use GenServer, restart: :temporary
 

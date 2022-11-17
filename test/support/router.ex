@@ -1,27 +1,27 @@
-defmodule Phoenix.LiveViewTest.Controller do
+defmodule PhoenixOld.LiveViewTest.Controller do
   use Phoenix.Controller
-  import Phoenix.LiveView.Controller
+  import PhoenixOld.LiveView.Controller
 
   plug :put_layout, false
 
   def incoming(conn, %{"type" => "live-render-2"}) do
-    live_render(conn, Phoenix.LiveViewTest.DashboardLive)
+    live_render(conn, PhoenixOld.LiveViewTest.DashboardLive)
   end
 
   def incoming(conn, %{"type" => "live-render-3"}) do
-    live_render(conn, Phoenix.LiveViewTest.DashboardLive, session: %{custom: :session})
+    live_render(conn, PhoenixOld.LiveViewTest.DashboardLive, session: %{custom: :session})
   end
 end
 
-defmodule Phoenix.LiveViewTest.Router do
+defmodule PhoenixOld.LiveViewTest.Router do
   use Phoenix.Router
-  import Phoenix.LiveView.Router
+  import PhoenixOld.LiveView.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
   end
 
-  scope "/", Phoenix.LiveViewTest do
+  scope "/", PhoenixOld.LiveViewTest do
     pipe_through [:browser]
 
     # controller test
@@ -33,7 +33,7 @@ defmodule Phoenix.LiveViewTest.Router do
     live "/router/thermo_container/:id", DashboardLive, container: {:span, style: "flex-grow"}
 
     live "/router/thermo_layout/:id", DashboardLive,
-      layout: {Phoenix.LiveViewTest.AlternativeLayout, :layout}
+      layout: {PhoenixOld.LiveViewTest.AlternativeLayout, :layout}
 
     # live view test
     live "/thermo", ThermostatLive, session: [:nest, :users, :redir]

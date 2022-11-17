@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveView.Component do
+defmodule PhoenixOld.LiveView.Component do
   @moduledoc """
   The struct returned by components in .leex templates.
 
@@ -24,7 +24,7 @@ defmodule Phoenix.LiveView.Component do
   end
 end
 
-defmodule Phoenix.LiveView.Comprehension do
+defmodule PhoenixOld.LiveView.Comprehension do
   @moduledoc """
   The struct returned by for-comprehensions in .leex templates.
 
@@ -39,16 +39,16 @@ defmodule Phoenix.LiveView.Comprehension do
           dynamics: [
             [
               iodata()
-              | Phoenix.LiveView.Rendered.t()
-              | Phoenix.LiveView.Comprehension.t()
-              | Phoenix.LiveView.Component.t()
+              | PhoenixOld.LiveView.Rendered.t()
+              | PhoenixOld.LiveView.Comprehension.t()
+              | PhoenixOld.LiveView.Component.t()
             ]
           ],
           fingerprint: integer()
         }
 
   defimpl Phoenix.HTML.Safe do
-    def to_iodata(%Phoenix.LiveView.Comprehension{static: static, dynamics: dynamics}) do
+    def to_iodata(%PhoenixOld.LiveView.Comprehension{static: static, dynamics: dynamics}) do
       for dynamic <- dynamics, do: to_iodata(static, dynamic)
     end
 
@@ -67,7 +67,7 @@ defmodule Phoenix.LiveView.Comprehension do
   end
 end
 
-defmodule Phoenix.LiveView.Rendered do
+defmodule PhoenixOld.LiveView.Rendered do
   @moduledoc """
   The struct returned by .leex templates.
 
@@ -82,15 +82,15 @@ defmodule Phoenix.LiveView.Rendered do
           dynamic: [
             nil
             | iodata()
-            | Phoenix.LiveView.Rendered.t()
-            | Phoenix.LiveView.Comprehension.t()
-            | Phoenix.LiveView.Component.t()
+            | PhoenixOld.LiveView.Rendered.t()
+            | PhoenixOld.LiveView.Comprehension.t()
+            | PhoenixOld.LiveView.Component.t()
           ],
           fingerprint: integer()
         }
 
   defimpl Phoenix.HTML.Safe do
-    def to_iodata(%Phoenix.LiveView.Rendered{static: static, dynamic: dynamic}) do
+    def to_iodata(%PhoenixOld.LiveView.Rendered{static: static, dynamic: dynamic}) do
       to_iodata(static, dynamic, [])
     end
 
@@ -116,7 +116,7 @@ defmodule Phoenix.LiveView.Rendered do
   end
 end
 
-defmodule Phoenix.LiveView.Engine do
+defmodule PhoenixOld.LiveView.Engine do
   @moduledoc ~S"""
   The `.leex` (Live EEx) template engine that tracks changes.
 
@@ -286,7 +286,7 @@ defmodule Phoenix.LiveView.Engine do
     {fingerprint, entries} = to_rendered_struct(handle_end(state), true, false, %{}, %{})
 
     quote do
-      require Phoenix.LiveView.Engine
+      require PhoenixOld.LiveView.Engine
 
       {fingerprint, prints} =
         Process.get(unquote(@pdict_key)) ||
@@ -444,7 +444,7 @@ defmodule Phoenix.LiveView.Engine do
       for = {:for, meta, filters ++ [[do: {:__block__, [], exprs ++ [vars]}]]}
 
       quote do
-        %Phoenix.LiveView.Comprehension{
+        %PhoenixOld.LiveView.Comprehension{
           static: unquote(binaries),
           dynamics: unquote(for),
           fingerprint: unquote(fingerprint)
@@ -500,7 +500,7 @@ defmodule Phoenix.LiveView.Engine do
 
       rendered =
         quote do
-          %Phoenix.LiveView.Rendered{
+          %PhoenixOld.LiveView.Rendered{
             static: unquote(static),
             dynamic: unquote(dynamic),
             fingerprint: unquote(fingerprint)
@@ -706,9 +706,9 @@ defmodule Phoenix.LiveView.Engine do
 
     extra_clauses =
       quote generated: true do
-        %{__struct__: Phoenix.LiveView.Rendered} = other -> other
-        %{__struct__: Phoenix.LiveView.Component} = other -> other
-        %{__struct__: Phoenix.LiveView.Comprehension} = other -> other
+        %{__struct__: PhoenixOld.LiveView.Rendered} = other -> other
+        %{__struct__: PhoenixOld.LiveView.Component} = other -> other
+        %{__struct__: PhoenixOld.LiveView.Comprehension} = other -> other
       end
 
     to_safe(ast, line, extra_clauses)

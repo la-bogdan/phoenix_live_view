@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveView.Application do
+defmodule PhoenixOld.LiveView.Application do
   @moduledoc false
 
   use Application

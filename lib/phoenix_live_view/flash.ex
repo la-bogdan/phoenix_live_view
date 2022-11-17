@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveView.Flash do
+defmodule PhoenixOld.LiveView.Flash do
   @moduledoc """
   Fetches Phoenix LiveView flash messages from cookie token.
 
@@ -66,7 +66,7 @@ defmodule Phoenix.LiveView.Flash do
   defp salt(conn, opts) do
     endpoint = Phoenix.Controller.endpoint_module(conn)
 
-    salt_base = opts[:signing_salt] || Phoenix.LiveView.Utils.salt!(endpoint)
+    salt_base = opts[:signing_salt] || PhoenixOld.LiveView.Utils.salt!(endpoint)
     computed_salt(salt_base)
   end
 

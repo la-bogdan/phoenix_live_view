@@ -1,10 +1,10 @@
-defmodule Phoenix.LiveViewUnitTest do
+defmodule PhoenixOld.LiveViewUnitTest do
   use ExUnit.Case, async: true
 
-  import Phoenix.LiveView
+  import PhoenixOld.LiveView
 
-  alias Phoenix.LiveView.{Utils, Socket}
-  alias Phoenix.LiveViewTest.Endpoint
+  alias PhoenixOld.LiveView.{Utils, Socket}
+  alias PhoenixOld.LiveViewTest.Endpoint
 
   @socket Utils.configure_socket(%Socket{endpoint: Endpoint}, %{connect_params: %{}})
 

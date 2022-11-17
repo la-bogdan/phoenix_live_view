@@ -1,10 +1,10 @@
-defmodule Phoenix.LiveView.Utils do
+defmodule PhoenixOld.LiveView.Utils do
   # Shared helpers used mostly by Channel and Diff,
   # but also Static, Flash, and LiveViewTest.
   @moduledoc false
 
-  alias Phoenix.LiveView
-  alias Phoenix.LiveView.Socket
+  alias PhoenixOld.LiveView
+  alias PhoenixOld.LiveView.Socket
 
   # Total length of 8 bytes when 64 encoded
   @rand_bytes 6
@@ -73,7 +73,7 @@ defmodule Phoenix.LiveView.Utils do
 
       other ->
         raise RuntimeError, """
-        expected #{inspect(view)}.render/1 to return a %Phoenix.LiveView.Rendered{} struct
+        expected #{inspect(view)}.render/1 to return a %PhoenixOld.LiveView.Rendered{} struct
 
         Ensure your render function uses ~L, or your eex template uses the .leex extension.
 
@@ -125,7 +125,7 @@ defmodule Phoenix.LiveView.Utils do
     query_params = if query, do: Plug.Conn.Query.decode(query), else: %{}
 
     case Phoenix.Router.route_info(router, "GET", path, host) do
-      %{plug: Phoenix.LiveView.Plug, plug_opts: ^view, path_params: path_params} ->
+      %{plug: PhoenixOld.LiveView.Plug, plug_opts: ^view, path_params: path_params} ->
         {:internal, Map.merge(query_params, path_params)}
 
       %{} ->

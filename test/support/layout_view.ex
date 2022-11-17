@@ -1,4 +1,4 @@
-defmodule Phoenix.LiveViewTest.LayoutView do
+defmodule PhoenixOld.LiveViewTest.LayoutView do
   use Phoenix.View, root: ""
 
   def render("app.html", assigns) do
@@ -6,7 +6,7 @@ defmodule Phoenix.LiveViewTest.LayoutView do
   end
 end
 
-defmodule Phoenix.LiveViewTest.AlternativeLayout do
+defmodule PhoenixOld.LiveViewTest.AlternativeLayout do
   use Phoenix.View, root: ""
 
   def render("layout.html", assigns) do

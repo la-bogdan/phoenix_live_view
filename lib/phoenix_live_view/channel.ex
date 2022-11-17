@@ -4,7 +4,7 @@ defmodule PhoenixOld.LiveView.Channel do
 
   require Logger
 
-  alias Phoenix.LiveView.{Socket, Utils, Diff, Static}
+  alias PhoenixOld.LiveView.{Socket, Utils, Diff, Static}
   alias Phoenix.Socket.Message
 
   @prefix :phoenix
